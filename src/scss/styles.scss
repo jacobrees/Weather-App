@@ -23,6 +23,15 @@ body {
   align-items: center;
 }
 
+.home-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .navbar-icon {
   width: 50px;
   fill: $white;
@@ -33,6 +42,10 @@ body {
   color: $white;
   font-weight: 900;
   font-size: 35px;
+}
+
+.content {
+  width: 100%;
 }
 
 .search-content {
