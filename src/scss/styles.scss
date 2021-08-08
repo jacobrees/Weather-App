@@ -107,6 +107,7 @@ body {
   background-color: $white;
   border-radius: 7px;
   margin: 10px auto;
+  cursor: pointer;
 }
 
 .country-name-container {
@@ -133,7 +134,7 @@ body {
   align-items: center;
 }
 
-.logatude-container {
+.latitude-container {
   border-bottom: 1px solid grey;
   min-height: 30px;
   display: flex;
@@ -141,7 +142,7 @@ body {
   align-items: center;
 }
 
-.latitude-container {
+.logatude-container {
   min-height: 30px;
   display: flex;
   justify-content: center;
