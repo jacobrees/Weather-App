@@ -25,6 +25,21 @@ const setSearchBtn = () => {
             <h4>Longitude: W 36° 30' 33''</h4>
         </div>
     </div>
+    <div class="country-result">
+    <div class="country-name-container">
+        <img class="search-country-flag" src="https://flagcdn.com/sa.svg" alt="South Africa">
+        <h3 class="country-name">South Africa</h3>
+    </div>
+    <div class="city-name-container">
+        <h4>City/Town: Swansea</h4>
+    </div>
+    <div class="latitude-container">
+        <h4>Latitude: S 54° 16' 52''</h4>
+    </div>
+    <div class="longitude-container">
+        <h4>Longitude: W 36° 30' 33''</h4>
+    </div>
+</div>
 </div>`;
   });
   searchBox.addEventListener('keypress', (e) => {
