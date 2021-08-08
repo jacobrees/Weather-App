@@ -21,8 +21,8 @@ const setSearchBtn = () => {
         <div class="latitude-container">
             <h4>Latitude: S 54° 16' 52''</h4>
         </div>
-        <div class="logatude-container">
-            <h4>Longatude: W 36° 30' 33''</h4>
+        <div class="longitude-container">
+            <h4>Longitude: W 36° 30' 33''</h4>
         </div>
     </div>
 </div>`;
