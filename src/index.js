@@ -12,8 +12,8 @@ const setSearchBtn = () => {
     contentContainer.innerHTML = ` <div class="search-results-content">
     <div class="country-result">
         <div class="country-name-container">
-            <img class="search-country-flag" src="https://flagcdn.com/za.svg" alt="South Africa">
-            <h3 class="country-name">South Africa</h3>
+            <img class="search-country-flag" src="https://flagcdn.com/sh.svg" alt="Saint Helena, Ascension and Tristan da Cunha">
+            <h3 class="country-name">Saint Helena, Ascension and Tristan da Cunha</h3>
         </div>
         <div class="city-name-container">
             <h4>City/Town: Swansea</h4>
