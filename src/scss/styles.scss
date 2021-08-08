@@ -96,8 +96,8 @@ body {
 .search-results-content {
   width: 100%;
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  max-width: 1400px;
+  grid-template-columns: 33% 33% 33%;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -151,9 +151,7 @@ body {
 
 /* Large devices */
 @media only screen and (max-width: 1199.98px) {
-  .search-results-content {
-    grid-template-columns: 33% 33% 33%;
-  }
+  // code
 }
 
 /* Medium devices */
