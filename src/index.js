@@ -1,5 +1,15 @@
 import './scss/styles.scss';
 
+const setSearchBtn = () => {
+  const searchBtn = document.querySelector('.search-btn');
+
+  searchBtn.addEventListener('click', (e) => {
+    const searchBox = document.querySelector('.search-box');
+    e.preventDefault();
+    console.log(searchBox.value);
+  });
+};
+
 const contentContainer = document.querySelector('.content');
 
 const loadHomePage = () => {
@@ -9,8 +19,8 @@ const loadHomePage = () => {
                     placeholder="Search by city/town">
                 <button class="search-btn" type="button">Search</button>
             </form>
-
         </div>`;
+  setSearchBtn();
 };
 
 const homeBtn = document.querySelector('.home-btn');
@@ -18,3 +28,5 @@ const homeBtn = document.querySelector('.home-btn');
 homeBtn.addEventListener('click', () => {
   loadHomePage();
 });
+
+setSearchBtn();
