@@ -149,6 +149,14 @@ body {
   align-items: center;
 }
 
+.no-results-found-title {
+  font-weight: 900;
+  font-size: 45px;
+  margin-top: 40px;
+  text-align: center;
+  color: $white;
+}
+
 /* Large devices */
 @media only screen and (max-width: 1199.98px) {
   // code

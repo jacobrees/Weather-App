@@ -3,26 +3,31 @@ const countryNames = require('../assets/countryNames.json');
 const contentContainer = document.querySelector('.content');
 
 const loadSearchPage = (locations) => {
-  let html = '<div class="search-results-content">';
-  locations.forEach((location) => {
-    html += ` 
-    <div class="country-result">
-        <div class="country-name-container">
-            <img class="search-country-flag" src="https://flagcdn.com/${location.country.toLowerCase()}.svg" alt="${countryNames[location.country.toLowerCase()]}">
-            <h3 class="country-name">${countryNames[location.country.toLowerCase()]}</h3>
-        </div>
-        <div class="city-name-container">
-            <h4>City/Town: ${location.name}</h4>
-        </div>
-        <div class="latitude-container">
-            <h4>Latitude: ${location.lat}</h4>
-        </div>
-        <div class="longitude-container">
-            <h4>Longitude: ${location.lon}</h4>
-        </div>
-    </div>`;
-  });
-  html += '</div>';
+  let html = '';
+  if (locations.length > 0) {
+    html += '<div class="search-results-content">';
+    locations.forEach((location) => {
+      html += ` 
+      <div class="country-result">
+          <div class="country-name-container">
+              <img class="search-country-flag" src="https://flagcdn.com/${location.country.toLowerCase()}.svg" alt="${countryNames[location.country.toLowerCase()]}">
+              <h3 class="country-name">${countryNames[location.country.toLowerCase()]}</h3>
+          </div>
+          <div class="city-name-container">
+              <h4>City/Town: ${location.name}</h4>
+          </div>
+          <div class="latitude-container">
+              <h4>Latitude: ${location.lat}</h4>
+          </div>
+          <div class="longitude-container">
+              <h4>Longitude: ${location.lon}</h4>
+          </div>
+      </div>`;
+    });
+    html += '</div>';
+  } else {
+    html += '<h2 class="no-results-found-title">No Results Found</h2>';
+  }
 
   contentContainer.innerHTML = html;
 };
