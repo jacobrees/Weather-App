@@ -2,6 +2,18 @@ const countryNames = require('../assets/countryNames.json');
 
 const contentContainer = document.querySelector('.content');
 
+const apiKey = '575a5a5a77f08cf33080bb747278040f';
+
+const getWeather = async (e) => {
+  const lat = e.currentTarget.childNodes[5].childNodes[1].textContent.slice(10);
+  const lon = e.currentTarget.childNodes[7].childNodes[1].textContent.slice(11);
+  const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`, {
+    mode: 'cors',
+  });
+  const weather = await response.json();
+  console.log(weather);
+};
+
 const loadSearchPage = (locations) => {
   let html = '';
   if (locations.length > 0) {
@@ -30,16 +42,21 @@ const loadSearchPage = (locations) => {
   }
 
   contentContainer.innerHTML = html;
-};
 
-const apiKey = '575a5a5a77f08cf33080bb747278040f';
+  const allLocations = document.querySelectorAll('.country-result');
+  allLocations.forEach((location) => {
+    location.addEventListener('click', (e) => {
+      getWeather(e);
+    });
+  });
+};
 
 const getLocations = async (locationInput) => {
   const location = encodeURIComponent(locationInput.trim());
-  const response1 = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${apiKey}`, {
+  const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${apiKey}`, {
     mode: 'cors',
   });
-  const locations = await response1.json();
+  const locations = await response.json();
   loadSearchPage(locations);
 };
 
