@@ -4,6 +4,18 @@ const contentContainer = document.querySelector('.content');
 
 const apiKey = '575a5a5a77f08cf33080bb747278040f';
 
+const degreeToDirection = (degree) => { //eslint-disable-line
+  if (degree < 45 || degree >= 315) {
+    return 'North';
+  } if (degree < 135) {
+    return 'East';
+  } if (degree < 225) {
+    return 'South';
+  } if (degree < 315) {
+    return 'West';
+  }
+};
+
 const loadWeatherPage = (weather) => {
   let html = '';
   html += `<div class="weather-content">
@@ -17,7 +29,7 @@ const loadWeatherPage = (weather) => {
       </svg>
       <h2 class="weather-winds-title">Wind</h2>
       <h2 class="weather-winds-speed">Speed: ${weather.wind.speed} mph</h2>
-      <h2 class="weather-winds-direction">Direction: ${weather.wind.deg}°</h2>
+      <h2 class="weather-winds-direction">Direction: ${degreeToDirection(weather.wind.deg)}</h2>
       <div class="humidity-cloudiness-container">
           <div class="humidity-container">
               <h2 class="humidity-cloudiness-title">Humidity</h2>
