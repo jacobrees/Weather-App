@@ -157,6 +157,99 @@ body {
   color: $white;
 }
 
+.weather-content {
+  max-width: 350px;
+  width: 95%;
+  background-color: $white;
+  margin: 30px auto;
+  border-radius: 5px;
+}
+
+.weather-country-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid grey;
+}
+
+.weather-country-flag {
+  height: 45px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.weather-country-name {
+  font-size: 20px;
+  margin: auto;
+}
+
+.weather-main-container {
+  min-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 30px;
+}
+
+.weather-city-name {
+  font-size: 33px;
+  margin: 10px 0;
+  text-decoration: underline;
+  font-weight: 900;
+}
+
+.weather-temperature {
+  font-weight: 900;
+  font-size: 40px;
+}
+
+.weather-forecast {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.weather-svg {
+  width: 200px;
+}
+
+.weather-winds-title {
+  font-size: 28px;
+  text-decoration: underline;
+}
+
+.weather-winds-speed {
+  font-size: 20px;
+}
+
+.weather-winds-direction {
+  font-size: 20px;
+}
+
+.humidity-cloudiness-container {
+  width: 100%;
+  display: flex;
+  padding: 13px 0 0;
+  text-align: center;
+}
+
+.humidity-container {
+  width: 50%;
+}
+
+.cloudiness-container {
+  width: 50%;
+}
+
+.humidity-cloudiness-title {
+  font-size: 22px;
+  text-decoration: underline;
+}
+
+.humidity-cloudiness-result {
+  font-size: 20px;
+  padding-top: 5px;
+}
+
 /* Large devices */
 @media only screen and (max-width: 1199.98px) {
   // code

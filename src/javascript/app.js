@@ -4,6 +4,10 @@ const contentContainer = document.querySelector('.content');
 
 const apiKey = '575a5a5a77f08cf33080bb747278040f';
 
+const loadWeatherPage = () => {
+  
+}
+
 const getWeather = async (e) => {
   const lat = e.currentTarget.childNodes[5].childNodes[1].textContent.slice(10);
   const lon = e.currentTarget.childNodes[7].childNodes[1].textContent.slice(11);
@@ -11,7 +15,7 @@ const getWeather = async (e) => {
     mode: 'cors',
   });
   const weather = await response.json();
-  console.log(weather);
+  loadWeatherPage(weather)
 };
 
 const loadSearchPage = (locations) => {
