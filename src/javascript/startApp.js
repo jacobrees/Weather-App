@@ -1,4 +1,4 @@
-import { setSearchBtn } from './app.js';
+import { setSearchBtn } from './eventListeners.js';
 
 const start = () => {
   setSearchBtn();
