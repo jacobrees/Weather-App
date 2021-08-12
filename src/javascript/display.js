@@ -4,16 +4,10 @@ const countryNames = require('../assets/countryNames.json');
 
 const contentContainer = document.querySelector('.content');
 
-const degreeToDirection = (degree) => { //eslint-disable-line
-  if (degree < 45 || degree >= 315) {
-    return 'North';
-  } if (degree < 135) {
-    return 'East';
-  } if (degree < 225) {
-    return 'South';
-  } if (degree < 315) {
-    return 'West';
-  }
+const degreeToDirection = (num) => {
+  const val = Math.floor((num / 22.5) + 0.5);
+  const arr = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+  return arr[(val % 16)];
 };
 
 const loadWeatherPage = (weather) => {
@@ -26,7 +20,7 @@ const loadWeatherPage = (weather) => {
         <img class="weather-svg" src="./assets/imgs/${weather.weather[0].icon}.svg" alt="Weather-Icon">
         <h2 class="weather-winds-title">Wind</h2>
         <h2 class="weather-winds-speed">Speed: ${weather.wind.speed} mph</h2>
-        <h2 class="weather-winds-direction">Direction: ${degreeToDirection(weather.wind.deg)}</h2>
+        <h2 class="weather-winds-direction">Direction: ${degreeToDirection(weather.wind.deg)}<svg class="wind-direction-svg" style="transform: rotate(${weather.wind.deg}deg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 7.58l5.995 5.988-1.416 1.414-4.579-4.574-4.59 4.574-1.416-1.414 6.006-5.988z"/></svg></h2>
         <div class="humidity-cloudiness-container">
             <div class="humidity-container">
                 <h2 class="humidity-cloudiness-title">Humidity</h2>
