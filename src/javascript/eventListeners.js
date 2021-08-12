@@ -36,4 +36,13 @@ const setHomePageBtn = () => {
   });
 };
 
-export { setGetWeatherListeners, setSearchBtn, setHomePageBtn };
+const setGoBackBtn = () => {
+  const backBtn = document.querySelector('.go-back-btn');
+  backBtn.addEventListener('click', () => {
+    loadHomePage();
+  });
+};
+
+export {
+  setGetWeatherListeners, setSearchBtn, setHomePageBtn, setGoBackBtn,
+};
