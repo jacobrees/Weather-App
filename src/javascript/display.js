@@ -73,8 +73,6 @@ const loadSearchPage = (locations) => {
   setGetWeatherListeners();
 };
 
-const homeBtn = document.querySelector('.home-btn');
-
 const loadHomePage = () => {
   contentContainer.innerHTML = `<div class="search-content">
               <h2 class="search-title">Search By Location</h2>
@@ -86,8 +84,4 @@ const loadHomePage = () => {
   setSearchBtn();
 };
 
-homeBtn.addEventListener('click', () => {
-  loadHomePage();
-});
-
-export { loadWeatherPage, loadSearchPage };
+export { loadWeatherPage, loadSearchPage, loadHomePage };

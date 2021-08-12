@@ -1,4 +1,5 @@
 import { getWeather, getLocations } from './apiCalls.js'; //eslint-disable-line
+import { loadHomePage } from './display.js'; //eslint-disable-line
 
 const setGetWeatherListeners = () => {
   const allLocations = document.querySelectorAll('.country-result');
@@ -27,4 +28,12 @@ const setSearchBtn = () => {
   });
 };
 
-export { setGetWeatherListeners, setSearchBtn };
+const setHomePageBtn = () => {
+  const homeBtn = document.querySelector('.home-btn');
+
+  homeBtn.addEventListener('click', () => {
+    loadHomePage();
+  });
+};
+
+export { setGetWeatherListeners, setSearchBtn, setHomePageBtn };
