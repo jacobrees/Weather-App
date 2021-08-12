@@ -1,4 +1,4 @@
-import { setGetWeatherListeners, setSearchBtn, setGoBackBtn } from './eventListeners.js'; //eslint-disable-line
+import { setGetWeatherListeners, setSearchBtn, setGoBackBtn, setToggleUnitsBtn } from './eventListeners.js'; //eslint-disable-line
 
 const countryNames = require('../assets/countryNames.json');
 
@@ -12,10 +12,11 @@ const degreeToDirection = (num) => {
 
 const loadWeatherPage = (weather) => {
   let html = '';
-  html += `<div class="weather-content">
+  html += `<button class="toggle-units-btn" type="button">Toggle °F/°C</button>
+            <div class="weather-content">
                 <div class="weather-main-container">
                     <h2 class="weather-city-name">${weather.name}</h2>     
-                    <h2 class="weather-temperature">${weather.main.temp}°F</h2>            
+                    <h2 class="weather-temperature">${Number(weather.main.temp)}°F</h2>            
                     <h2 class="weather-forecast">${weather.weather[0].description}</h2>
                     <img class="weather-svg" src="./assets/imgs/${weather.weather[0].icon}.svg" alt="Weather-Icon">
                     <h2 class="weather-winds-title">Wind</h2>
@@ -37,6 +38,7 @@ const loadWeatherPage = (weather) => {
                 </div>
             </div>`;
   contentContainer.innerHTML = html;
+  setToggleUnitsBtn();
 };
 
 const loadSearchPage = (locations) => {

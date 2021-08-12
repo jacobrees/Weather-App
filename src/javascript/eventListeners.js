@@ -1,5 +1,6 @@
-import { getWeather, getLocations } from './apiCalls.js'; //eslint-disable-line
+import { getWeather, getLocations, } from './apiCalls.js'; //eslint-disable-line
 import { loadHomePage } from './display.js'; //eslint-disable-line
+import { toggleUnits } from './toggleUnits.js';
 
 const setGetWeatherListeners = () => {
   const allLocations = document.querySelectorAll('.country-result');
@@ -43,6 +44,13 @@ const setGoBackBtn = () => {
   });
 };
 
+const setToggleUnitsBtn = () => {
+  const toggleUnitsBtn = document.querySelector('.toggle-units-btn');
+  toggleUnitsBtn.addEventListener('click', (e) => {
+    toggleUnits(e);
+  });
+};
+
 export {
-  setGetWeatherListeners, setSearchBtn, setHomePageBtn, setGoBackBtn,
+  setGetWeatherListeners, setSearchBtn, setHomePageBtn, setGoBackBtn, setToggleUnitsBtn,
 };

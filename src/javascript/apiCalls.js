@@ -1,4 +1,5 @@
 import { loadWeatherPage, loadSearchPage } from './display.js'; //eslint-disable-line
+import { resetUnits } from './toggleUnits.js';
 
 const apiKey = '575a5a5a77f08cf33080bb747278040f';
 
@@ -10,6 +11,7 @@ const getWeather = async (e) => {
   });
   const weather = await response.json();
   loadWeatherPage(weather);
+  resetUnits();
 };
 
 const getLocations = async (locationInput) => {
