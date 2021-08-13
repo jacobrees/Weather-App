@@ -1,4 +1,5 @@
 import { setGetWeatherListeners, setSearchBtn, setGoBackBtn, setToggleUnitsBtn } from './eventListeners.js'; //eslint-disable-line
+import toggleLoadingScreen from './loadingScreen.js';
 
 const countryNames = require('../assets/countryNames.json');
 
@@ -39,6 +40,7 @@ const loadWeatherPage = (weather) => {
             </div>`;
   contentContainer.innerHTML = html;
   setToggleUnitsBtn();
+    toggleLoadingScreen();
 };
 
 const loadSearchPage = (locations) => {
@@ -72,6 +74,7 @@ const loadSearchPage = (locations) => {
     contentContainer.innerHTML = html;
     setGoBackBtn();
   }
+    toggleLoadingScreen();
 };
 
 const loadHomePage = () => {
