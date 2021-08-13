@@ -40,7 +40,7 @@ const loadWeatherPage = (weather) => {
             </div>`;
   contentContainer.innerHTML = html;
   setToggleUnitsBtn();
-    toggleLoadingScreen();
+  toggleLoadingScreen();
 };
 
 const loadSearchPage = (locations) => {
@@ -74,7 +74,7 @@ const loadSearchPage = (locations) => {
     contentContainer.innerHTML = html;
     setGoBackBtn();
   }
-    toggleLoadingScreen();
+  toggleLoadingScreen();
 };
 
 const loadHomePage = () => {
