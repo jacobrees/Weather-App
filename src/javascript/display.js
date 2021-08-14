@@ -1,9 +1,54 @@
 import { setGetWeatherListeners, setSearchBtn, setGoBackBtn, setToggleUnitsBtn } from './eventListeners.js'; //eslint-disable-line
 import toggleLoadingScreen from './loadingScreen.js';
 
-const countryNames = require('../assets/countryNames.json');
-
 const contentContainer = document.querySelector('.content');
+
+const loadHomePage = () => {
+  contentContainer.innerHTML = `<div class="search-content">
+              <h2 class="search-title">Search By Location</h2>
+              <form class="search-form" action="#"><input class="search-box" type="text"
+                      placeholder="Search by city/town">
+                  <button class="search-btn" type="button">Search</button>
+              </form>
+          </div>`;
+  setSearchBtn();
+};
+
+const loadSearchPage = (locations) => {
+  let html = '';
+  if (locations.length > 0) {
+    html += '<div class="search-results-content">';
+    locations.forEach((location) => {
+      html += ` 
+        <div class="country-result">
+            <div class="country-name-container">
+                <img class="search-country-flag" src="https://flagcdn.com/${location.country.toLowerCase()}.svg" alt="${countryNames[location.country.toLowerCase()]}">
+                <h3 class="country-name">${countryNames[location.country.toLowerCase()]}</h3>
+            </div>
+            <div class="city-name-container">
+                <h4>City/Town: ${location.name}</h4>
+            </div>
+            <div class="latitude-container">
+                <h4>Latitude: ${location.lat}</h4>
+            </div>
+            <div class="longitude-container">
+                <h4>Longitude: ${location.lon}</h4>
+            </div>
+        </div>`;
+    });
+    html += '</div>';
+    contentContainer.innerHTML = html;
+    setGetWeatherListeners();
+  } else {
+    html += '<h2 class="no-results-found-title">No Results Found</h2><button class="go-back-btn" type="button">Go Back</button>';
+
+    contentContainer.innerHTML = html;
+    setGoBackBtn();
+  }
+  toggleLoadingScreen();
+};
+
+const countryNames = require('../assets/countryNames.json');
 
 const degreeToDirection = (num) => {
   const val = Math.floor((num / 22.5) + 0.5);
@@ -41,51 +86,6 @@ const loadWeatherPage = (weather) => {
   contentContainer.innerHTML = html;
   setToggleUnitsBtn();
   toggleLoadingScreen();
-};
-
-const loadSearchPage = (locations) => {
-  let html = '';
-  if (locations.length > 0) {
-    html += '<div class="search-results-content">';
-    locations.forEach((location) => {
-      html += ` 
-        <div class="country-result">
-            <div class="country-name-container">
-                <img class="search-country-flag" src="https://flagcdn.com/${location.country.toLowerCase()}.svg" alt="${countryNames[location.country.toLowerCase()]}">
-                <h3 class="country-name">${countryNames[location.country.toLowerCase()]}</h3>
-            </div>
-            <div class="city-name-container">
-                <h4>City/Town: ${location.name}</h4>
-            </div>
-            <div class="latitude-container">
-                <h4>Latitude: ${location.lat}</h4>
-            </div>
-            <div class="longitude-container">
-                <h4>Longitude: ${location.lon}</h4>
-            </div>
-        </div>`;
-    });
-    html += '</div>';
-    contentContainer.innerHTML = html;
-    setGetWeatherListeners();
-  } else {
-    html += '<h2 class="no-results-found-title">No Results Found</h2><button class="go-back-btn" type="button">Go Back</button>';
-
-    contentContainer.innerHTML = html;
-    setGoBackBtn();
-  }
-  toggleLoadingScreen();
-};
-
-const loadHomePage = () => {
-  contentContainer.innerHTML = `<div class="search-content">
-              <h2 class="search-title">Search By Location</h2>
-              <form class="search-form" action="#"><input class="search-box" type="text"
-                      placeholder="Search by city/town">
-                  <button class="search-btn" type="button">Search</button>
-              </form>
-          </div>`;
-  setSearchBtn();
 };
 
 export { loadWeatherPage, loadSearchPage, loadHomePage };
