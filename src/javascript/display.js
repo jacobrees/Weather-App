@@ -3,16 +3,45 @@ import toggleLoadingScreen from './loadingScreen.js';
 
 const contentContainer = document.querySelector('.content');
 
+const clearPage = () => {
+  while (contentContainer.firstChild) {
+    contentContainer.removeChild(contentContainer.firstChild);
+  }
+};
+
+const createHomePageElement = () => {
+  const searchContentDiv = document.createElement('div');
+  searchContentDiv.classList.add('search-content');
+  const searchTitle = document.createElement('h2');
+  searchTitle.textContent = 'Search By Location';
+  searchTitle.classList.add('search-title');
+  searchContentDiv.appendChild(searchTitle);
+  const form = document.createElement('form');
+  form.classList.add('search-form');
+  form.setAttribute('action', '#');
+  searchContentDiv.appendChild(form);
+  const input = document.createElement('input');
+  input.setAttribute('type', 'text');
+  input.setAttribute('placeholder', 'Search by city/town');
+  input.classList.add('search-box');
+  form.appendChild(input);
+  const submitBtn = document.createElement('button');
+  submitBtn.setAttribute('type', 'button');
+  submitBtn.textContent = 'Search';
+  submitBtn.classList.add('search-btn');
+  form.appendChild(submitBtn);
+
+  return searchContentDiv;
+};
+
 const loadHomePage = () => {
-  contentContainer.innerHTML = `<div class="search-content">
-              <h2 class="search-title">Search By Location</h2>
-              <form class="search-form" action="#"><input class="search-box" type="text"
-                      placeholder="Search by city/town">
-                  <button class="search-btn" type="button">Search</button>
-              </form>
-          </div>`;
+  clearPage();
+  const homePage = createHomePageElement();
+  contentContainer.appendChild(homePage);
   setSearchBtn();
 };
+
+const countryNames = require('../assets/countryNames.json');
 
 const loadSearchPage = (locations) => {
   let html = '';
@@ -47,8 +76,6 @@ const loadSearchPage = (locations) => {
   }
   toggleLoadingScreen();
 };
-
-const countryNames = require('../assets/countryNames.json');
 
 const degreeToDirection = (num) => {
   const val = Math.floor((num / 22.5) + 0.5);
