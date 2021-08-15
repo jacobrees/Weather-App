@@ -156,12 +156,12 @@ const createWeatherPageElements = (weather) => {
   const weatherWindsDirection = document.createElement('h2');
   weatherWindsDirection.classList.add('weather-winds-direction');
   weatherWindsDirection.textContent = `Direction: ${degreeToDirection(weather.wind.deg)}`;
-  const weatherDirectionSvg = document.createElement('svg');
+  const weatherDirectionSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   weatherDirectionSvg.classList.add('wind-direction-svg');
   weatherDirectionSvg.setAttribute('viewBox', '0 0 24 24');
   weatherDirectionSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-  weatherDirectionSvg.setAttribute('style', `transform: rotate(${weather.wind.deg}deg`);
-  const weatherDirectionSvgPath = document.createElement('path');
+  weatherDirectionSvg.setAttribute('style', `transform: rotate(${weather.wind.deg}deg)`);
+  const weatherDirectionSvgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   weatherDirectionSvgPath.setAttribute('d', 'M7 11h-6l11-11 11 11h-6v13h-10z');
   weatherDirectionSvg.appendChild(weatherDirectionSvgPath);
   weatherWindsDirection.appendChild(weatherDirectionSvg);
