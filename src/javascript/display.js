@@ -43,35 +43,70 @@ const loadHomePage = () => {
 
 const countryNames = require('../assets/countryNames.json');
 
+const createSearchResultsElement = (locations) => {
+  const searchResultsContentDiv = document.createElement('div');
+  searchResultsContentDiv.classList.add('search-results-content');
+  locations.forEach((location) => {
+    const countryResultDiv = document.createElement('div');
+    countryResultDiv.classList.add('country-result');
+    searchResultsContentDiv.appendChild(countryResultDiv);
+    const countryNameDiv = document.createElement('div');
+    countryNameDiv.classList.add('country-name-container');
+    countryResultDiv.appendChild(countryNameDiv);
+    const countryImg = document.createElement('img');
+    countryImg.classList.add('search-country-flag');
+    countryImg.src = `https://flagcdn.com/${location.country.toLowerCase()}.svg`;
+    countryImg.alt = `${countryNames[location.country.toLowerCase()]}`;
+    countryNameDiv.appendChild(countryImg);
+    const countryName = document.createElement('h3');
+    countryName.classList.add('country-name');
+    countryName.textContent = countryNames[location.country.toLowerCase()];
+    countryNameDiv.appendChild(countryName);
+    const cityNameDiv = document.createElement('div');
+    cityNameDiv.classList.add('city-name-container');
+    countryResultDiv.appendChild(cityNameDiv);
+    const cityName = document.createElement('h4');
+    cityName.textContent = `City/Town: ${location.name}`;
+    cityNameDiv.appendChild(cityName);
+    const latitudeDiv = document.createElement('div');
+    latitudeDiv.classList.add('latitude-container');
+    countryResultDiv.appendChild(latitudeDiv);
+    const latitude = document.createElement('h4');
+    latitude.textContent = `Latitude: ${location.lat}`;
+    latitudeDiv.appendChild(latitude);
+    const longitudeDiv = document.createElement('div');
+    longitudeDiv.classList.add('longitude-container');
+    countryResultDiv.appendChild(longitudeDiv);
+    const longitude = document.createElement('h4');
+    longitude.textContent = `longitude: ${location.lon}`;
+    longitudeDiv.appendChild(longitude);
+  });
+  return searchResultsContentDiv;
+};
+
+const createGoBackElements = () => {
+  const noResultsTitle = document.createElement('h2');
+  noResultsTitle.classList.add('no-results-found-title');
+  noResultsTitle.textContent = 'No Results Found';
+  const backBtn = document.createElement('button');
+  backBtn.classList.add('go-back-btn');
+  backBtn.setAttribute('type', 'button');
+  backBtn.textContent = 'Go Back';
+
+  return [noResultsTitle, backBtn];
+};
+
 const loadSearchPage = (locations) => {
-  let html = '';
+  clearPage();
   if (locations.length > 0) {
-    html += '<div class="search-results-content">';
-    locations.forEach((location) => {
-      html += ` 
-        <div class="country-result">
-            <div class="country-name-container">
-                <img class="search-country-flag" src="https://flagcdn.com/${location.country.toLowerCase()}.svg" alt="${countryNames[location.country.toLowerCase()]}">
-                <h3 class="country-name">${countryNames[location.country.toLowerCase()]}</h3>
-            </div>
-            <div class="city-name-container">
-                <h4>City/Town: ${location.name}</h4>
-            </div>
-            <div class="latitude-container">
-                <h4>Latitude: ${location.lat}</h4>
-            </div>
-            <div class="longitude-container">
-                <h4>Longitude: ${location.lon}</h4>
-            </div>
-        </div>`;
-    });
-    html += '</div>';
-    contentContainer.innerHTML = html;
+    const searchResults = createSearchResultsElement(locations);
+    contentContainer.appendChild(searchResults);
     setGetWeatherListeners();
   } else {
-    html += '<h2 class="no-results-found-title">No Results Found</h2><button class="go-back-btn" type="button">Go Back</button>';
-
-    contentContainer.innerHTML = html;
+    const goBackElements = createGoBackElements();
+    goBackElements.forEach((goBackElement) => {
+      contentContainer.appendChild(goBackElement);
+    });
     setGoBackBtn();
   }
   toggleLoadingScreen();

@@ -6,8 +6,8 @@ const apiKey = '575a5a5a77f08cf33080bb747278040f';
 
 const getWeather = async (e) => {
   toggleLoadingScreen();
-  const lat = e.currentTarget.childNodes[5].childNodes[1].textContent.slice(10);
-  const lon = e.currentTarget.childNodes[7].childNodes[1].textContent.slice(11);
+  const lat = e.currentTarget.childNodes[2].childNodes[0].textContent.slice(10);
+  const lon = e.currentTarget.childNodes[3].childNodes[0].textContent.slice(11);
   const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`, {
     mode: 'cors',
   });
