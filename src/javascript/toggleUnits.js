@@ -13,11 +13,11 @@ let defaultValue;
 
 const setDefaultValue = (e) => {
   defaultValue = e.currentTarget
-    .parentElement.childNodes[2].childNodes[1].childNodes[3].textContent;
+    .parentElement.childNodes[1].childNodes[0].childNodes[1].textContent;
 };
 
 const toggleUnits = (e) => {
-  const tempDataOnScreen = e.currentTarget.parentElement.childNodes[2].childNodes[1].childNodes[3];
+  const tempDataOnScreen = e.currentTarget.parentElement.childNodes[1].childNodes[0].childNodes[1];
   const tempData = parseFloat(tempDataOnScreen.textContent.slice(0, -2));
   if (units === 'imperial') {
     units = 'metric';

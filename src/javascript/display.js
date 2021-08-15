@@ -118,34 +118,89 @@ const degreeToDirection = (num) => {
   return arr[(val % 16)];
 };
 
+const createWeatherPageElements = (weather) => {
+  const toggleUnitsBtn = document.createElement('button');
+  toggleUnitsBtn.setAttribute('type', 'button');
+  toggleUnitsBtn.classList.add('toggle-units-btn');
+  toggleUnitsBtn.textContent = 'Toggle °F/°C';
+  const weatherContentDiv = document.createElement('div');
+  weatherContentDiv.classList.add('weather-content');
+  const weatherMainContainer = document.createElement('div');
+  weatherMainContainer.classList.add('weather-main-container');
+  weatherContentDiv.appendChild(weatherMainContainer);
+  const weatherCityName = document.createElement('h2');
+  weatherCityName.classList.add('weather-city-name');
+  weatherCityName.textContent = `${weather.name}`;
+  weatherMainContainer.appendChild(weatherCityName);
+  const weatherTemperature = document.createElement('h2');
+  weatherTemperature.classList.add('weather-temperature');
+  weatherTemperature.textContent = `${Number(weather.main.temp)}°F`;
+  weatherMainContainer.appendChild(weatherTemperature);
+  const weatherForecast = document.createElement('h2');
+  weatherForecast.classList.add('weather-forecast');
+  weatherForecast.textContent = `${weather.weather[0].description}`;
+  weatherMainContainer.appendChild(weatherForecast);
+  const weatherImg = document.createElement('img');
+  weatherImg.classList.add('weather-svg');
+  weatherImg.src = `./assets/imgs/${weather.weather[0].icon}.svg`;
+  weatherImg.alt = 'Weather-Icon';
+  weatherMainContainer.appendChild(weatherImg);
+  const weatherWindTitle = document.createElement('h2');
+  weatherWindTitle.classList.add('weather-winds-title');
+  weatherWindTitle.textContent = 'Wind';
+  weatherMainContainer.appendChild(weatherWindTitle);
+  const weatherWindsSpeed = document.createElement('h2');
+  weatherWindsSpeed.classList.add('weather-winds-speed');
+  weatherWindsSpeed.textContent = `Speed: ${weather.wind.speed} mph`;
+  weatherMainContainer.appendChild(weatherWindsSpeed);
+  const weatherWindsDirection = document.createElement('h2');
+  weatherWindsDirection.classList.add('weather-winds-direction');
+  weatherWindsDirection.textContent = `Direction: ${degreeToDirection(weather.wind.deg)}`;
+  const weatherDirectionSvg = document.createElement('svg');
+  weatherDirectionSvg.classList.add('wind-direction-svg');
+  weatherDirectionSvg.setAttribute('viewBox', '0 0 24 24');
+  weatherDirectionSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  weatherDirectionSvg.setAttribute('style', `transform: rotate(${weather.wind.deg}deg`);
+  const weatherDirectionSvgPath = document.createElement('path');
+  weatherDirectionSvgPath.setAttribute('d', 'M7 11h-6l11-11 11 11h-6v13h-10z');
+  weatherDirectionSvg.appendChild(weatherDirectionSvgPath);
+  weatherWindsDirection.appendChild(weatherDirectionSvg);
+  weatherMainContainer.appendChild(weatherWindsDirection);
+  const humidityCloudinessDiv = document.createElement('div');
+  humidityCloudinessDiv.classList.add('humidity-cloudiness-container');
+  weatherMainContainer.appendChild(humidityCloudinessDiv);
+  const humidityDiv = document.createElement('div');
+  humidityDiv.classList.add('humidity-container');
+  humidityCloudinessDiv.appendChild(humidityDiv);
+  const humidityTitle = document.createElement('h2');
+  humidityTitle.classList.add('humidity-cloudiness-title');
+  humidityTitle.textContent = 'Humidity';
+  humidityDiv.appendChild(humidityTitle);
+  const humidityResult = document.createElement('h2');
+  humidityResult.classList.add('humidity', 'humidity-cloudiness-result');
+  humidityResult.textContent = `${weather.main.humidity}%`;
+  humidityDiv.appendChild(humidityResult);
+  const cloudinessDiv = document.createElement('div');
+  cloudinessDiv.classList.add('cloudiness-container');
+  humidityCloudinessDiv.appendChild(cloudinessDiv);
+  const cloudinessTitle = document.createElement('h2');
+  cloudinessTitle.classList.add('humidity-cloudiness-title');
+  cloudinessTitle.textContent = 'Cloudiness';
+  cloudinessDiv.appendChild(cloudinessTitle);
+  const cloudinessResult = document.createElement('h2');
+  cloudinessResult.classList.add('cloudiness', 'humidity-cloudiness-result');
+  cloudinessResult.textContent = `${weather.clouds.all}%`;
+  cloudinessDiv.appendChild(cloudinessResult);
+
+  return [toggleUnitsBtn, weatherContentDiv];
+};
+
 const loadWeatherPage = (weather) => {
-  let html = '';
-  html += `<button class="toggle-units-btn" type="button">Toggle °F/°C</button>
-            <div class="weather-content">
-                <div class="weather-main-container">
-                    <h2 class="weather-city-name">${weather.name}</h2>     
-                    <h2 class="weather-temperature">${Number(weather.main.temp)}°F</h2>            
-                    <h2 class="weather-forecast">${weather.weather[0].description}</h2>
-                    <img class="weather-svg" src="./assets/imgs/${weather.weather[0].icon}.svg" alt="Weather-Icon">
-                    <h2 class="weather-winds-title">Wind</h2>
-                    <h2 class="weather-winds-speed">Speed: ${weather.wind.speed} mph</h2>
-                    <h2 class="weather-winds-direction">
-                    Direction: ${degreeToDirection(weather.wind.deg)}
-                    <svg class="wind-direction-svg" style="transform: rotate(${weather.wind.deg}deg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 11h-6l11-11 11 11h-6v13h-10z"/></svg>
-                    </h2>
-                    <div class="humidity-cloudiness-container">
-                        <div class="humidity-container">
-                            <h2 class="humidity-cloudiness-title">Humidity</h2>
-                            <h2 class="humidity humidity-cloudiness-result">${weather.main.humidity}%</h2>
-                        </div>
-                        <div class="cloudiness-container">
-                            <h2 class="humidity-cloudiness-title">Cloudiness</h2>
-                            <h2 class="cloudiness humidity-cloudiness-result">${weather.clouds.all}%</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-  contentContainer.innerHTML = html;
+  clearPage();
+  const weatherPageElements = createWeatherPageElements(weather);
+  weatherPageElements.forEach((weatherPageElement) => {
+    contentContainer.appendChild(weatherPageElement);
+  });
   setToggleUnitsBtn();
   toggleLoadingScreen();
 };
