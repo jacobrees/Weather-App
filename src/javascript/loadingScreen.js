@@ -16,6 +16,7 @@ const testAllImgsLoaded = (totalImgs) => {
 
 const waitForImageToLoad = (imageElement) => new Promise((resolve) => {
   imageElement.onload = resolve;
+  imageElement.onerror = resolve;
 });
 
 export { toggleLoadingScreen, testAllImgsLoaded, waitForImageToLoad };
