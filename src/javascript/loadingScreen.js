@@ -4,4 +4,18 @@ const toggleLoadingScreen = () => {
   loadingScreen.classList.toggle('hide-loading-screen');
 };
 
-export default toggleLoadingScreen;
+let imgsLoadCount = 0;
+
+const testAllImgsLoaded = (totalImgs) => {
+  imgsLoadCount += 1;
+  if (imgsLoadCount === totalImgs) {
+    toggleLoadingScreen();
+    imgsLoadCount = 0;
+  }
+};
+
+const waitForImageToLoad = (imageElement) => new Promise((resolve) => {
+  imageElement.onload = resolve;
+});
+
+export { toggleLoadingScreen, testAllImgsLoaded, waitForImageToLoad };

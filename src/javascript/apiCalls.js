@@ -1,6 +1,6 @@
 import { loadWeatherPage, loadSearchPage } from './display.js'; //eslint-disable-line
 import { resetUnits } from './toggleUnits.js';
-import toggleLoadingScreen from './loadingScreen.js';
+import { toggleLoadingScreen } from './loadingScreen.js';
 
 const apiKey = '575a5a5a77f08cf33080bb747278040f';
 

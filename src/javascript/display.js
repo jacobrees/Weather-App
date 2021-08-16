@@ -1,5 +1,5 @@
 import { setGetWeatherListeners, setSearchBtn, setGoBackBtn, setToggleUnitsBtn } from './eventListeners.js'; //eslint-disable-line
-import toggleLoadingScreen from './loadingScreen.js';
+import { toggleLoadingScreen, testAllImgsLoaded, waitForImageToLoad } from './loadingScreen.js';
 
 const contentContainer = document.querySelector('.content');
 
@@ -56,6 +56,11 @@ const createSearchResultsElement = (locations) => {
     const countryImg = document.createElement('img');
     countryImg.classList.add('search-country-flag');
     countryImg.src = `https://flagcdn.com/${location.country.toLowerCase()}.svg`;
+
+    waitForImageToLoad(countryImg).then(() => {
+      testAllImgsLoaded(locations.length);
+    });
+
     countryImg.alt = `${countryNames[location.country.toLowerCase()]}`;
     countryNameDiv.appendChild(countryImg);
     const countryName = document.createElement('h3');
@@ -108,8 +113,8 @@ const loadSearchPage = (locations) => {
       contentContainer.appendChild(goBackElement);
     });
     setGoBackBtn();
+    toggleLoadingScreen();
   }
-  toggleLoadingScreen();
 };
 
 const degreeToDirection = (num) => {
@@ -143,6 +148,11 @@ const createWeatherPageElements = (weather) => {
   const weatherImg = document.createElement('img');
   weatherImg.classList.add('weather-svg');
   weatherImg.src = `./assets/imgs/${weather.weather[0].icon}.svg`;
+
+  waitForImageToLoad(weatherImg).then(() => {
+    testAllImgsLoaded(1);
+  });
+
   weatherImg.alt = 'Weather-Icon';
   weatherMainContainer.appendChild(weatherImg);
   const weatherWindTitle = document.createElement('h2');
@@ -202,7 +212,6 @@ const loadWeatherPage = (weather) => {
     contentContainer.appendChild(weatherPageElement);
   });
   setToggleUnitsBtn();
-  toggleLoadingScreen();
 };
 
 export { loadWeatherPage, loadSearchPage, loadHomePage };
