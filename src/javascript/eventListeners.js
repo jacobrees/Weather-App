@@ -1,4 +1,4 @@
-import { getWeather, getLocations, } from './apiCalls.js'; //eslint-disable-line
+import { getWeather, getLocations } from './apiCalls.js'; //eslint-disable-line
 import { loadHomePage } from './display.js'; //eslint-disable-line
 import { toggleUnits } from './toggleUnits.js';
 
