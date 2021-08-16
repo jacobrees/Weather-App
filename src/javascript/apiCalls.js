@@ -8,7 +8,7 @@ const getWeather = async (e) => {
   toggleLoadingScreen();
   const lat = e.currentTarget.childNodes[2].childNodes[0].textContent.slice(10);
   const lon = e.currentTarget.childNodes[3].childNodes[0].textContent.slice(11);
-  const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`, {
+  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`, {
     mode: 'cors',
   });
   const weather = await response.json();
@@ -19,7 +19,7 @@ const getWeather = async (e) => {
 const getLocations = async (locationInput) => {
   toggleLoadingScreen();
   const location = encodeURIComponent(locationInput.trim());
-  const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${apiKey}`, {
+  const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${apiKey}`, {
     mode: 'cors',
   });
   const locations = await response.json();
