@@ -29,7 +29,7 @@ Once you are inside of this folder run the command `google-chrome index.html` an
 Below shows the following commands you will need to run to achieve this:
 
 ```
-$ cd WeatherApp
+$ cd Weather-App
 ```
 
 ```
