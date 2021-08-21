@@ -8,7 +8,7 @@
 
 # Live Preview
 
-[View Project](https://rawcdn.githack.com/jacobrees/Weather-App/538d2bd0929714df2ee579283c723643bce13547/dist/index.html)
+[View Project](https://silly-euclid-0e28fb.netlify.app)
 
 # Getting Started
 
