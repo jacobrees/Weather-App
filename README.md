@@ -1,8 +1,8 @@
-# Weather-App
+# Weather App
 
 > This project is an app that displays weather information based on location. This app was built using JavaScript. This is an assignment taken from _The Odin Project_. The purpose of this app was to build something that uses an API to get data.
 
-### Todo Screenshot:
+### WeatherSearch Screenshot:
 
 ![](screenshot/screenshot.png)
 
