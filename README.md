@@ -8,7 +8,7 @@
 
 # Live Preview
 
-[View Project](https://silly-euclid-0e28fb.netlify.app)
+### [View Website](https://silly-euclid-0e28fb.netlify.app)
 
 # Getting Started
 
