@@ -6,7 +6,7 @@
 
 ![](screenshot/screenshot.png)
 
-# Live Preview
+# Live Website
 
 ### [View Website](https://silly-euclid-0e28fb.netlify.app)
 
